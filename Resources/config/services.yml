@@ -1,0 +1,12 @@
+services :
+    multitenacy.security.authentication.provider:
+        class: STK\MultitenacyBundle\Security\Authentication\Provider\MultitenacyAuthenticationProvider
+        arguments:
+            - '' # User Provider
+            - '%kernel.cache_dir%/security/nonces'
+        public: false
+
+    multitenacy.security.authentication.listener:
+        class: STK\MultitenacyBundle\Security\Authentication\Firewall\MultitenacyAuthenticationListener
+        arguments: ['@security.token_storage', '@security.authentication.manager']
+        public: false
