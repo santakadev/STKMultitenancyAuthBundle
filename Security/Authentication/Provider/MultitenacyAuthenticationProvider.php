@@ -22,6 +22,23 @@ class MultitenacyAuthenticationProvider implements AuthenticationProviderInterfa
     private $encoderFactory;
 
     /**
+     * @var string
+     */
+    private $providerKey;
+
+    /**
+     * @param MultitenacyUserProviderInterface $userProvider
+     * @param EncoderFactoryInterface $encoderFactory
+     * @param string $providerKey
+     */
+    public function __construct(MultitenacyUserProviderInterface $userProvider, EncoderFactoryInterface $encoderFactory, $providerKey)
+    {
+        $this->userProvider = $userProvider;
+        $this->encoderFactory = $encoderFactory;
+        $this->providerKey = $providerKey;
+    }
+
+    /**
      * Attempts to authenticate a TokenInterface object.
      *
      * @param TokenInterface $token The TokenInterface instance to authenticate

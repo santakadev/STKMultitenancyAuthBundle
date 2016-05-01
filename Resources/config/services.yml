@@ -3,10 +3,24 @@ services :
         class: STK\MultitenacyBundle\Security\Authentication\Provider\MultitenacyAuthenticationProvider
         arguments:
             - '' # User Provider
-            - '%kernel.cache_dir%/security/nonces'
+            - '@security.encoder_factory.generic'
+            - '' # Provider-shared Key
         public: false
 
     multitenacy.security.authentication.listener:
         class: STK\MultitenacyBundle\Security\Authentication\Firewall\MultitenacyAuthenticationListener
-        arguments: ['@security.token_storage', '@security.authentication.manager']
+        parent: "security.authentication.listener.abstract"
+        abstract: true
         public: false
+
+    security.authentication.success_handler:
+        class:  Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler
+        arguments:  ["@security.http_utils", {}]
+        tags:
+            - { name: 'monolog.logger', channel: 'security' }
+
+    security.authentication.failure_handler:
+        class:  Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler
+        arguments:  ["@http_kernel", "@security.http_utils", {}, "@logger"]
+        tags:
+            - { name: 'monolog.logger', channel: 'security' }

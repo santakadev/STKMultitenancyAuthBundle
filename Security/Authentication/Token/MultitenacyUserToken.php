@@ -17,18 +17,29 @@ class MultitenacyUserToken extends AbstractToken
     private $credentials;
 
     /**
+     * @var string
+     */
+    private $providerKey;
+
+    /**
      * @param string $tenant
      * @param $user
      * @param $credentials
+     * @param $providerKey
      * @param array|\string[]|\Symfony\Component\Security\Core\Role\RoleInterface[] $roles
      */
-    public function __construct($tenant, $user, $credentials, array $roles = array())
+    public function __construct($tenant, $user, $credentials, $providerKey, array $roles = array())
     {
         parent::__construct($roles);
+
+        if (empty($providerKey)) {
+            throw new \InvalidArgumentException('$providerKey must not be empty.');
+        }
 
         $this->tenant = $tenant;
         $this->setUser($user);
         $this->credentials = $credentials;
+        $this->providerKey = $providerKey;
 
         // If the user has roles, consider it authenticated
         $this->setAuthenticated(count($roles) > 0);
@@ -42,6 +53,14 @@ class MultitenacyUserToken extends AbstractToken
     public function getCredentials()
     {
         $this->credentials;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProviderKey()
+    {
+        return $this->providerKey;
     }
 
     /**
