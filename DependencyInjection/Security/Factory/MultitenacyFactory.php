@@ -31,10 +31,13 @@ class MultitenacyFactory implements SecurityFactoryInterface
         $container
             ->setDefinition($providerId, new DefinitionDecorator('multitenacy.security.authentication.provider'))
             ->replaceArgument(0, new Reference($userProvider))
+            ->replaceArgument(2, $id)
         ;
 
         $listenerId = 'security.authentication.listener.multitenacy.'.$id;
-        $listener = $container->setDefinition($listenerId, new DefinitionDecorator('multitenacy.security.authentication.listener'));
+        $container
+            ->setDefinition($listenerId, new DefinitionDecorator('multitenacy.security.authentication.listener'))
+            ->replaceArgument(4, $id);
 
         return array($providerId, $listenerId, $defaultEntryPoint);
     }
