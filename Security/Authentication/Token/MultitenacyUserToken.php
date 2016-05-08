@@ -52,7 +52,7 @@ class MultitenacyUserToken extends AbstractToken
      */
     public function getCredentials()
     {
-        $this->credentials;
+        return $this->credentials;
     }
 
     /**
