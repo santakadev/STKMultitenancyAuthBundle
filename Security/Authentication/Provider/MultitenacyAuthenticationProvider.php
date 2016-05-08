@@ -59,7 +59,13 @@ class MultitenacyAuthenticationProvider implements AuthenticationProviderInterfa
             $token->getCredentials(),
             $user->getSalt()
         )) {
-            return $token;
+            return new MultitenacyUserToken(
+                $token->getTenant(),
+                $token->getUsername(),
+                $token->getCredentials(),
+                $this->providerKey,
+                $user->getRoles()
+            );
         }
 
         throw new AuthenticationException('The multitenacy autentication failed.');
