@@ -1,5 +1,5 @@
 services :
-    multitenacy.security.authentication.provider:
+    security.authentication.provider.multitenacy:
         class: STK\MultitenacyBundle\Security\Authentication\Provider\MultitenacyAuthenticationProvider
         arguments:
             - '' # User Provider
@@ -7,7 +7,7 @@ services :
             - '' # Provider-shared Key
         public: false
 
-    multitenacy.security.authentication.listener:
+    security.authentication.listener.multitenacy:
         class: STK\MultitenacyBundle\Security\Authentication\Firewall\MultitenacyAuthenticationListener
         parent: "security.authentication.listener.abstract"
         abstract: true

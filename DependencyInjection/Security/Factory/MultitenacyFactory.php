@@ -23,9 +23,9 @@ class MultitenacyFactory extends AbstractFactory
 
     protected function createAuthProvider(ContainerBuilder $container, $id, $config, $userProviderId)
     {
-        $providerId = 'security.authentication.provider.multitenacy.'.$id;
+        $providerId = $this->getProviderId().'.'.$id;
         $container
-            ->setDefinition($providerId, new DefinitionDecorator('multitenacy.security.authentication.provider'))
+            ->setDefinition($providerId, new DefinitionDecorator($this->getProviderId()))
             ->replaceArgument(0, new Reference($userProviderId))
             ->replaceArgument(2, $this->getKey())
         ;
@@ -38,13 +38,28 @@ class MultitenacyFactory extends AbstractFactory
         return 'security.authentication.listener.multitenacy';
     }
 
+    protected function getProviderId()
+    {
+        return 'security.authentication.provider.multitenacy';
+    }
+
     protected function createListener($container, $id, $config, $userProvider)
     {
-        $listenerId = 'security.authentication.listener.multitenacy.'.$id;
-        $container
-            ->setDefinition($listenerId, new DefinitionDecorator('multitenacy.security.authentication.listener'))
-            ->replaceArgument(4, $id);
+        $listenerId = $listenerId = parent::createListener($container, $id, $config, $userProvider);
+        $container->getDefinition($listenerId);
         return $listenerId;
     }
-    
+
+    protected function createEntryPoint($container, $id, $config, $defaultEntryPoint)
+    {
+        $entryPointId = 'security.authentication.form_entry_point.'.$id;
+        $container
+            ->setDefinition($entryPointId, new DefinitionDecorator('security.authentication.form_entry_point'))
+            ->addArgument(new Reference('security.http_utils'))
+            ->addArgument($config['login_path'])
+            ->addArgument($config['use_forward'])
+        ;
+
+        return $entryPointId;
+    }
 }
