@@ -13,6 +13,15 @@ use Symfony\Component\Security\Http\Firewall\AbstractAuthenticationListener;
 class MultitenacyAuthenticationListener extends AbstractAuthenticationListener
 {
 
+    protected function requiresAuthentication(Request $request)
+    {
+        if (!$request->isMethod('POST')) {
+            return false;
+        }
+
+        return parent::requiresAuthentication($request);
+    }
+
     /**
      * Performs authentication.
      *
