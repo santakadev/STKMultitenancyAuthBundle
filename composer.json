@@ -1,5 +1,5 @@
 {
-  "name": "santakadev/multitenancy-bundle",
+  "name": "santakadev/multitenancy-auth-bundle",
   "description": "Authentication provider for multitenancy",
   "minimum-stability": "dev",
   "license": "MIT",
