@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-class STKMultitenancyExtension extends Extension
+class STKMultitenancyAuthExtension extends Extension
 {
 
     /**
@@ -26,6 +26,6 @@ class STKMultitenancyExtension extends Extension
 
     public function getAlias()
     {
-        return 'stk_multitenancy';
+        return 'stk_multitenancy_auth';
     }
 }
