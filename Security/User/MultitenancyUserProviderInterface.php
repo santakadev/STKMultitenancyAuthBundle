@@ -1,12 +1,12 @@
 <?php
 
-namespace STK\MultitenacyBundle\Security\User;
+namespace STK\MultitenancyAuthBundle\Security\User;
 
-use STK\MultitenacyBundle\Security\Exception\Security\User\TenantNotFoundException;
+use STK\MultitenancyAuthBundle\Security\Exception\Security\User\TenantNotFoundException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
-interface MultitenacyUserProviderInterface extends UserProviderInterface
+interface MultitenancyUserProviderInterface extends UserProviderInterface
 {
     /**
      * Loads the user for the given username.
@@ -17,7 +17,7 @@ interface MultitenacyUserProviderInterface extends UserProviderInterface
      * @param string $tenant The tenant
      * @param string $username The username
      *
-     * @return MultitenacyUserInterface
+     * @return MultitenancyUserInterface
      *
      * @throws TenantNotFoundException if the tenant is not found
      * @throws UsernameNotFoundException if the user is not found

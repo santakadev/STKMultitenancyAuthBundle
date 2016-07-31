@@ -1,13 +1,13 @@
 <?php
 
-namespace STK\MultitenacyBundle\DependencyInjection\Security\Factory;
+namespace STK\MultitenancyAuthBundle\DependencyInjection\Security\Factory;
 
 use Symfony\Bundle\SecurityBundle\DependencyInjection\Security\Factory\AbstractFactory;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\DefinitionDecorator;
 use Symfony\Component\DependencyInjection\Reference;
 
-class MultitenacyFactory extends AbstractFactory
+class MultitenancyFactory extends AbstractFactory
 {
 
     public function getPosition()
@@ -17,7 +17,7 @@ class MultitenacyFactory extends AbstractFactory
 
     public function getKey()
     {
-        return 'multitenacy';
+        return 'multitenancy';
     }
 
 
@@ -35,12 +35,12 @@ class MultitenacyFactory extends AbstractFactory
 
     protected function getListenerId()
     {
-        return 'security.authentication.listener.multitenacy';
+        return 'security.authentication.listener.multitenancy';
     }
 
     protected function getProviderId()
     {
-        return 'security.authentication.provider.multitenacy';
+        return 'security.authentication.provider.multitenancy';
     }
 
     protected function createListener($container, $id, $config, $userProvider)

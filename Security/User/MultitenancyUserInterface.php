@@ -1,10 +1,10 @@
 <?php
 
-namespace STK\MultitenacyBundle\Security\User;
+namespace STK\MultitenancyAuthBundle\Security\User;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 
-interface MultitenacyUserInterface extends UserInterface
+interface MultitenancyUserInterface extends UserInterface
 {
     /**
      * @return string

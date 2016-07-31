@@ -1,13 +1,13 @@
 <?php
 
-namespace STK\MultitenacyBundle\DependencyInjection;
+namespace STK\MultitenancyAuthBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-class STKMultitenacyExtension extends Extension
+class STKMultitenancyExtension extends Extension
 {
 
     /**
@@ -26,6 +26,6 @@ class STKMultitenacyExtension extends Extension
 
     public function getAlias()
     {
-        return 'stk_multitenacy';
+        return 'stk_multitenancy';
     }
 }

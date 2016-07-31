@@ -1,6 +1,6 @@
 <?php
 
-namespace STK\MultitenacyBundle\Security\Exception\Security\User;
+namespace STK\MultitenancyAuthBundle\Security\Exception\Security\User;
 
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 

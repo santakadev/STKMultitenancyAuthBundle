@@ -1,14 +1,14 @@
 services :
-    security.authentication.provider.multitenacy:
-        class: STK\MultitenacyBundle\Security\Authentication\Provider\MultitenacyAuthenticationProvider
+    security.authentication.provider.multitenancy:
+        class: STK\MultitenancyAuthBundle\Security\Authentication\Provider\MultitenancyAuthenticationProvider
         arguments:
             - '' # User Provider
             - '@security.encoder_factory.generic'
             - '' # Provider-shared Key
         public: false
 
-    security.authentication.listener.multitenacy:
-        class: STK\MultitenacyBundle\Security\Authentication\Firewall\MultitenacyAuthenticationListener
+    security.authentication.listener.multitenancy:
+        class: STK\MultitenancyAuthBundle\Security\Authentication\Firewall\MultitenancyAuthenticationListener
         parent: "security.authentication.listener.abstract"
         abstract: true
         public: false

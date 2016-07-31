@@ -1,18 +1,18 @@
 <?php
 
-namespace STK\MultitenacyBundle\Security\Authentication\Provider;
+namespace STK\MultitenancyAuthBundle\Security\Authentication\Provider;
 
-use STK\MultitenacyBundle\Security\Authentication\Token\MultitenacyUserToken;
-use STK\MultitenacyBundle\Security\User\MultitenacyUserProviderInterface;
+use STK\MultitenancyAuthBundle\Security\Authentication\Token\MultitenancyUserToken;
+use STK\MultitenancyAuthBundle\Security\User\MultitenancyUserProviderInterface;
 use Symfony\Component\Security\Core\Authentication\Provider\AuthenticationProviderInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 
-class MultitenacyAuthenticationProvider implements AuthenticationProviderInterface
+class MultitenancyAuthenticationProvider implements AuthenticationProviderInterface
 {
     /**
-     * @var MultitenacyUserProviderInterface
+     * @var MultitenancyUserProviderInterface
      */
     private $userProvider;
 
@@ -27,11 +27,11 @@ class MultitenacyAuthenticationProvider implements AuthenticationProviderInterfa
     private $providerKey;
 
     /**
-     * @param MultitenacyUserProviderInterface $userProvider
+     * @param MultitenancyUserProviderInterface $userProvider
      * @param EncoderFactoryInterface $encoderFactory
      * @param string $providerKey
      */
-    public function __construct(MultitenacyUserProviderInterface $userProvider, EncoderFactoryInterface $encoderFactory, $providerKey)
+    public function __construct(MultitenancyUserProviderInterface $userProvider, EncoderFactoryInterface $encoderFactory, $providerKey)
     {
         $this->userProvider = $userProvider;
         $this->encoderFactory = $encoderFactory;
@@ -59,7 +59,7 @@ class MultitenacyAuthenticationProvider implements AuthenticationProviderInterfa
             $token->getCredentials(),
             $user->getSalt()
         )) {
-            return new MultitenacyUserToken(
+            return new MultitenancyUserToken(
                 $token->getTenant(),
                 $token->getUsername(),
                 $token->getCredentials(),
@@ -68,7 +68,7 @@ class MultitenacyAuthenticationProvider implements AuthenticationProviderInterfa
             );
         }
 
-        throw new AuthenticationException('The multitenacy autentication failed.');
+        throw new AuthenticationException('The multitenancy authentication failed.');
     }
 
     /**
@@ -80,6 +80,6 @@ class MultitenacyAuthenticationProvider implements AuthenticationProviderInterfa
      */
     public function supports(TokenInterface $token)
     {
-        return $token instanceof MultitenacyUserToken;
+        return $token instanceof MultitenancyUserToken;
     }
 }

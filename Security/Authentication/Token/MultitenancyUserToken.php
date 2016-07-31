@@ -1,10 +1,10 @@
 <?php
 
-namespace STK\MultitenacyBundle\Security\Authentication\Token;
+namespace STK\MultitenancyAuthBundle\Security\Authentication\Token;
 
 use Symfony\Component\Security\Core\Authentication\Token\AbstractToken;
 
-class MultitenacyUserToken extends AbstractToken
+class MultitenancyUserToken extends AbstractToken
 {
     /**
      * @var string

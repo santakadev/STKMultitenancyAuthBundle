@@ -1,6 +1,6 @@
 {
-  "name": "santakadev/multitenacy-bundle",
-  "description": "Authentication provider for multitenacy",
+  "name": "santakadev/multitenancy-bundle",
+  "description": "Authentication provider for multitenancy",
   "minimum-stability": "dev",
   "license": "MIT",
   "authors": [
@@ -14,7 +14,7 @@
     "symfony/security-bundle": "^3.0"
   },
   "autoload": {
-    "psr-4": { "STK\\MultitenacyBundle\\": "" }
+    "psr-4": { "STK\\MultitenancyAuthBundle\\": "" }
   },
   "extra": {
     "branch-alias": {

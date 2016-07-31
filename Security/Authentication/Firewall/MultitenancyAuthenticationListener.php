@@ -1,16 +1,15 @@
 <?php
 
-namespace STK\MultitenacyBundle\Security\Authentication\Firewall;
+namespace STK\MultitenancyAuthBundle\Security\Authentication\Firewall;
 
-use Psr\Log\LoggerInterface;
-use STK\MultitenacyBundle\Security\Authentication\Token\MultitenacyUserToken;
+use STK\MultitenancyAuthBundle\Security\Authentication\Token\MultitenancyUserToken;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Http\Firewall\AbstractAuthenticationListener;
 
-class MultitenacyAuthenticationListener extends AbstractAuthenticationListener
+class MultitenancyAuthenticationListener extends AbstractAuthenticationListener
 {
 
     protected function requiresAuthentication(Request $request)
@@ -37,7 +36,7 @@ class MultitenacyAuthenticationListener extends AbstractAuthenticationListener
         $password = $request->request->get('_password');
         $tenant = $request->request->get('_tenant');
 
-        $token = new MultitenacyUserToken(
+        $token = new MultitenancyUserToken(
             $tenant,
             $username,
             $password,
